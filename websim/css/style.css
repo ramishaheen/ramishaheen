@@ -1,0 +1,77 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #1d2671, #c33764);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+button {
+  background-color: #00c6ff;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #008cba;
+}
+
+.question {
+  margin-bottom: 20px;
+}
+
+.answers button {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#dashboard {
+  text-align: center;
+}
+
+#dashboard h2 {
+  margin-bottom: 0;
+}
+
+.progress {
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  width: 0;
+}
+
+.leaderboard {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.leaderboard h3 {
+  margin-top: 0;
+}
+
+.toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
