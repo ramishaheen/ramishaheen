@@ -207,3 +207,14 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+## Deploying the Simulation
+
+The `websim` directory contains static files for the cybersecurity training.
+You can host these files with **GitHub Pages** using the provided workflow:
+
+1. Commit your changes to the `main` branch.
+2. GitHub Actions will publish the contents of `websim` to the `gh-pages` site.
+3. Visit `https://<your-username>.github.io/<your-repo>` to view the simulation.
+
+The workflow is defined in `.github/workflows/deploy.yml`.
