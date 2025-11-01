@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cup Reading</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="reading">
+        <h1>Your Cup Reading</h1>
+        <p class="timestamp">Interpreted on {{ reading.date }}</p>
+
+        <article class="reading-card image-card">
+          <h2>Cup Snapshot</h2>
+          <img
+            class="cup-photo"
+            src="{{ image_url }}"
+            alt="Uploaded cup ready for interpretation"
+          />
+          <p>{{ analysis.summary }}</p>
+          <ul class="insights-list">
+            {% for highlight in analysis.highlights %}
+            <li>{{ highlight }}</li>
+            {% endfor %}
+          </ul>
+          {% if reading.observations %}
+          <p class="user-observation">
+            <strong>Your note:</strong> {{ reading.observations }}
+          </p>
+          {% endif %}
+          <div class="metrics">
+            {% for label, value in analysis.metrics.items() %}
+            <div class="metric">
+              <span class="metric-label">{{ label }}</span>
+              <span class="metric-value">{{ value }}%</span>
+            </div>
+            {% endfor %}
+          </div>
+        </article>
+
+        <article class="reading-card">
+          <h2>Symbol Messages from Your Photo</h2>
+          <ul>
+            {% for symbol in reading.symbol_focus %}
+            <li>
+              <strong>{{ symbol.label }}:</strong>
+              <span>{{ symbol.message }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </article>
+
+        <article class="reading-card">
+          <h2>Energy Overview</h2>
+          <p>
+            <strong>Placement insight:</strong>
+            {{ reading.placement_choice }} — {{ reading.placement }}
+          </p>
+          <p>
+            <strong>Beverage tone:</strong>
+            {{ reading.beverage_choice }} — {{ reading.beverage_tone }}
+          </p>
+          <p><strong>Mood reflection:</strong> {{ reading.mood or 'You kept your feelings private today.' }}</p>
+        </article>
+
+        <article class="reading-card">
+          <h2>Guidance</h2>
+          <p><strong>Reflection prompt:</strong> {{ reading.reflection_prompt }}</p>
+          <div class="outlook">
+            {% for area, message in reading.outlook.items() %}
+            <section>
+              <h3>{{ area }}</h3>
+              <p>{{ message }}</p>
+            </section>
+            {% endfor %}
+          </div>
+          <p class="lucky">Lucky numbers: {{ reading.lucky_numbers | join(', ') }}</p>
+        </article>
+
+        <a class="back-link" href="{{ url_for('index') }}">Read another cup</a>
+      </section>
+    </main>
+  </body>
+</html>

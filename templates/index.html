@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cup Reading Oracle</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="intro">
+        <h1>Cup Reading Oracle</h1>
+        <p>
+          Upload a clear photo of the inside of your cup and the oracle will
+          study its textures, highlight symbolic shapes, and weave a detailed
+          reading just for you.
+        </p>
+      </section>
+
+      <form method="post" class="reading-form" enctype="multipart/form-data">
+        {% if error %}
+        <div class="form-alert">{{ error }}</div>
+        {% endif %}
+
+        <label for="cup_image">Cup photo</label>
+        <input
+          id="cup_image"
+          name="cup_image"
+          type="file"
+          accept="image/*"
+          required
+        />
+        <p class="help-text">
+          Tip: snap the cup from above with soft lighting so the oracle can see
+          the swirls clearly.
+        </p>
+
+        <label for="beverage">What was in your cup?</label>
+        <select id="beverage" name="beverage">
+          {% for beverage in beverages %}
+          <option
+            value="{{ beverage }}"
+            {% if beverage == form_state.beverage %}selected{% endif %}
+          >
+            {{ beverage|title }}
+          </option>
+          {% endfor %}
+        </select>
+
+        <label for="observations">Noticed patterns or notes (optional)</label>
+        <textarea
+          id="observations"
+          name="observations"
+          rows="3"
+          placeholder="Spiral near the rim, cluster at the bottom..."
+        >{{ form_state.observations }}</textarea>
+
+        <label for="mood">How did you feel during the reading?</label>
+        <textarea
+          id="mood"
+          name="mood"
+          rows="3"
+          placeholder="Calm, curious, hopeful..."
+        >{{ form_state.mood }}</textarea>
+
+        <button type="submit">Let the oracle read my cup</button>
+      </form>
+    </main>
+  </body>
+</html>
