@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cup Reading Oracle – Preview</title>
+    <link rel="stylesheet" href="../static/css/styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="intro">
+        <h1>Cup Reading Oracle</h1>
+        <p>
+          Upload a clear photo of the inside of your cup and the oracle will
+          study its textures, highlight symbolic shapes, and weave a detailed
+          reading just for you.
+        </p>
+      </section>
+
+      <form
+        class="reading-form"
+        aria-label="Cup reading input form"
+        enctype="multipart/form-data"
+      >
+        <div class="form-alert">
+          Preview only – image analysis happens in the live Flask app.
+        </div>
+
+        <label for="cup_image">Cup photo</label>
+        <input
+          id="cup_image"
+          name="cup_image"
+          type="file"
+          accept="image/*"
+          required
+        />
+        <p class="help-text">
+          Tip: snap the cup from above with soft lighting so the oracle can see
+          the swirls clearly.
+        </p>
+
+        <label for="beverage">What was in your cup?</label>
+        <select id="beverage" name="beverage">
+          <option value="coffee">Coffee</option>
+          <option value="decaf">Decaf</option>
+          <option value="espresso">Espresso</option>
+          <option value="herbal">Herbal</option>
+          <option value="tea">Tea</option>
+        </select>
+
+        <label for="observations">Noticed patterns or notes (optional)</label>
+        <textarea
+          id="observations"
+          name="observations"
+          rows="3"
+          placeholder="Spiral near the rim, cluster at the bottom..."
+        ></textarea>
+
+        <label for="mood">How did you feel during the reading?</label>
+        <textarea
+          id="mood"
+          name="mood"
+          rows="3"
+          placeholder="Calm, curious, hopeful..."
+        ></textarea>
+
+        <button type="submit">Let the oracle read my cup</button>
+      </form>
+    </main>
+  </body>
+</html>
