@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Public Camera Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Public Camera Dashboard</h1>
+      <p class="notice">
+        Add only camera links you have legal permission to use or links explicitly published as public.
+      </p>
+
+      <section class="card">
+        <h2>Add camera</h2>
+        <form id="camera-form" class="form-grid">
+          <label>
+            Name
+            <input id="name" required placeholder="Downtown Crossroad" />
+          </label>
+          <label>
+            Stream URL
+            <input id="url" type="url" required placeholder="https://example.com/live.m3u8" />
+          </label>
+          <label>
+            Location
+            <input id="location" placeholder="City Center" />
+          </label>
+          <label>
+            Notes
+            <input id="notes" placeholder="Optional notes" />
+          </label>
+          <button type="submit">Add camera</button>
+        </form>
+        <p id="flash" class="flash hidden"></p>
+      </section>
+
+      <section>
+        <h2>Your cameras</h2>
+        <div id="camera-grid" class="camera-grid"></div>
+      </section>
+    </main>
+
+    <template id="camera-card-template">
+      <article class="card camera-card">
+        <header>
+          <h3 class="camera-name"></h3>
+          <span class="status">saved</span>
+        </header>
+        <p><strong>Location:</strong> <span class="camera-location"></span></p>
+        <p><strong>AI tags:</strong> <span class="camera-tags"></span></p>
+        <p><strong>URL:</strong> <a class="camera-link" target="_blank" rel="noreferrer">Open stream</a></p>
+        <div class="preview-slot"></div>
+        <p class="camera-notes notes"></p>
+        <div class="actions">
+          <button class="delete-btn danger" type="button">Delete</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
