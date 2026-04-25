@@ -1,0 +1,14 @@
+{
+  "name": "mythos-intelligence-system",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "npm run -w backend build && npm run -w frontend build",
+    "dev": "npm run -w backend dev",
+    "lint": "npm run -w backend lint && npm run -w frontend lint"
+  }
+}

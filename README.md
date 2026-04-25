@@ -1,209 +1,189 @@
-Contents
-Introduction
-1.1 Contributions
-1.2 Summary of Evaluation Results
+# Mythos Intelligence System
 
-Approach
-2.1 Overview
-2.2 HPD-Transformer: Hybrid Parsing-Density Architecture
-2.2.1 Parsing Module: Structured Reasoning
-2.2.2 Density Module: Uncertainty-Aware Predictions
-2.2.3 Sparse Mixture of Experts (MoE): Domain-Specialized Computation
-2.3 Reinforcement Learning from Human Feedback (RLHF)
-2.3.1 Reward Modeling
-2.3.2 Training Template
-2.3.3 Performance and Self-Evolution
-2.4 Knowledge Distillation: Empowering Smaller Models
-2.4.1 Distillation from Teacher Models
-2.4.2 Cross-Domain Adaptation
+Mythos Intelligence System is **a multi-agent intelligence orchestration system designed to deliver ultra-scale reasoning through expert agents, evidence verification, contradiction analysis, cybersecurity intelligence, and structured decision logic**.
 
-Experiments
-3.1 HPD-Transformer Evaluation
-3.1.1 Benchmark Results (MMLU, CoNLL, Wikitext)
-3.1.2 Comparison to DeepSeek-V3 and GPT-4
-3.2 Distilled Model Evaluation
-3.2.1 Performance on Edge Devices
-3.2.2 Energy Efficiency Metrics
+It provides a general intelligence core plus a permanent defensive cybersecurity core (Autonomous Cybersecurity Watchtower), with auditable APIs and a Command Center UI.
 
-Discussion
-4.1 Hybrid Reasoning vs. Monolithic Models
-4.2 Unsuccessful Attempts
-4.2.1 Challenges in Long-Context Parsing
-4.2.2 Cold Start for New Domains
+---
 
-Conclusion, Limitations, and Future Work
-A. Contributions and Acknowledgments
+## 1) Architecture
 
-1. Introduction
-The HPD-Transformer is a novel hybrid AI model designed to bridge the gap between structured parsing and probabilistic reasoning. By combining rule-based logic with uncertainty-aware predictions, the HPD-Transformer achieves state-of-the-art performance in specialized domains while maintaining energy efficiency and scalability.
+### Core Design
+- **General Intelligence Core**: strategic analysis, decomposition, risk/decision support.
+- **Cybersecurity Core**: defensive telemetry analysis and cyber risk reasoning.
+- **Multi-Agent Orchestration**: orchestrator + specialized agents + contradiction/verification.
+- **Evidence-First**: no fabricated evidence, explicit missing-data disclosures.
+- **Executive Output**: structured, defensible, auditable responses.
 
-1.1 Contributions
-Hybrid Architecture: Integrates parsing and density estimation into a single framework.
+### Agent Set
+- Orchestrator Agent
+- General Reasoning Agent
+- Cybersecurity Agent
+- Evidence Verification Agent
+- Contradiction Agent
+- Risk Analysis Agent
+- Standards & Compliance Agent
+- Executive Summary Agent
+- Memory & Learning Agent
 
-Sparse MoE: Reduces computational costs by activating only domain-specific experts.
+### Backend Services
+- OrchestrationService
+- ReasoningService
+- CybersecurityService
+- EvidenceService
+- VerificationService
+- RiskScoringService
+- StandardsMappingService
+- MemoryService
+- LLMProviderService
+- AuditTrailService
 
-Energy Efficiency: Achieves 60% lower inference costs than DeepSeek-V3 and GPT-4.
+### Frontend Experience
+- Glassmorphism Command Center with animated telemetry and gradient visual system.
+- Interactive Deep Thinking mode cards with one-click toggles.
+- Multi-view workspace tabs: Overview, Deep Analysis, Cyber Watchtower.
+- Live agent activity statuses, confidence telemetry, evidence completeness meter, and decision panel.
+- Responsive layout and explicit empty/error states for data-source disconnected scenarios.
 
-Real-Time Adaptability: Supports online learning for dynamic environments.
+---
 
-1.2 Summary of Evaluation Results
-MMLU Accuracy: 82% (vs. DeepSeek-V3’s 79%).
+## 2) Repository Structure
 
-Inference Cost: 
-0.001
-p
-e
-r
-q
-u
-e
-r
-y
-(
-v
-s
+```text
 .
-0.001perquery(vs.0.002 for DeepSeek-V3).
+├── backend
+│   ├── db/schema.sql
+│   └── src
+│       ├── agents/prompts.ts
+│       ├── app.ts
+│       ├── index.ts
+│       ├── middleware/auth.ts
+│       ├── routes/mythos.ts
+│       ├── services/*.ts
+│       └── types/mythos.ts
+├── frontend
+│   └── src
+│       ├── App.tsx
+│       ├── api/mythos.ts
+│       ├── components/ModeToggle.tsx
+│       ├── types/mythos.ts
+│       └── styles.css
+├── .env.example
+└── package.json
+```
 
-Training CO2 Emissions: 50 kg (vs. 150 kg for DeepSeek-V3).
+---
 
-2. Approach
-2.1 Overview
-The HPD-Transformer combines three core components:
+## 3) API Endpoints
 
-Parsing Module: Lightweight Performer layers for syntactic/semantic analysis.
+Implemented endpoints:
 
-Density Module: Bayesian neural networks for uncertainty quantification.
+- `POST /api/mythos/query`
+- `GET /api/mythos/query/:id`
+- `GET /api/mythos/history`
+- `GET /api/mythos/evidence/:queryId`
+- `GET /api/mythos/agents/status`
+- `GET /api/mythos/cyber/alerts`
+- `GET /api/mythos/cyber/findings`
+- `GET /api/mythos/risk/dashboard`
+- `POST /api/mythos/settings/llm-provider` (admin)
+- `POST /api/mythos/settings/agents` (admin)
+- `GET /api/mythos/audit-trail` (admin)
 
-Sparse MoE: 32 domain-specific experts with top-2 routing for efficiency.
+---
 
-2.2 HPD-Transformer: Hybrid Parsing-Density Architecture
-2.2.1 Parsing Module:
+## 4) Security Controls Implemented
 
-Extracts dependency trees, entity relationships, and semantic roles.
+- Helmet headers
+- CORS policy
+- Rate limiting
+- JSON payload limits
+- Input validation (Zod)
+- Admin-guarded settings endpoints
+- API key secrecy via backend-only environment variables
+- Audit-trail logging hooks
+- No autonomous destructive action path in backend logic
+- Defensive-only cybersecurity intent in service logic
 
-Uses efficient attention mechanisms (Performer) for O(n) complexity.
+---
 
-2.2.2 Density Module:
+## 5) Data Integrity & No-Fake-Data Policy
 
-Outputs confidence scores and probability distributions.
+The system intentionally avoids synthetic evidence and demo alerts in normal mode:
 
-Flags low-confidence predictions for human review.
+- If no source is connected, outputs include **"Data source not connected."**
+- If no evidence exists for a query, outputs include:
+  **"No verified evidence is available in the system for this request."**
 
-2.2.3 Sparse MoE:
+---
 
-Activates only relevant experts per input (e.g., medical, legal).
+## 6) Database Schema
 
-Reduces computation by 50% compared to dense transformers.
+`backend/db/schema.sql` includes all required tables:
 
-2.3 Reinforcement Learning from Human Feedback (RLHF)
-2.3.1 Reward Modeling:
+- users, roles, permissions
+- agent_configs, llm_providers
+- system_queries, agent_runs, agent_steps
+- evidence_sources, documents, document_chunks
+- system_logs, access_logs, api_logs
+- security_alerts, risk_findings, cyber_findings
+- standards_mapping, memory_items
+- response_history, audit_trail, data_source_health
 
-Trains on human preferences for correctness and clarity.
+---
 
-2.3.2 Training Template:
+## 7) Local Setup
 
-Uses Proximal Policy Optimization (PPO) for fine-tuning.
+### Prerequisites
+- Node.js 20+
+- npm 10+
+- PostgreSQL 15+ (for production integration)
 
-2.3.3 Performance and Self-Evolution:
+### Install
+```bash
+npm install
+```
 
-Achieves 12% improvement in user satisfaction scores.
+### Configure
+```bash
+cp .env.example .env
+# fill secrets and provider keys
+```
 
-Supports continuous learning via user feedback.
+### Run Backend
+```bash
+npm run -w backend dev
+```
 
-2.4 Knowledge Distillation
-2.4.1 Distillation from Teacher Models:
+### Run Frontend
+```bash
+npm run -w frontend dev
+```
 
-Transfers knowledge from GPT-4 and DeepSeek-V3.
+---
 
-2.4.2 Cross-Domain Adaptation:
+## 8) Production Notes
 
-Fine-tunes on domain-specific datasets (e.g., healthcare, finance).
+- Wire `EvidenceService` to real connectors (DB, SIEM, document stores).
+- Persist audit events to `audit_trail` table (currently in-memory in this scaffold).
+- Add encrypted at-rest secret management for `llm_providers.encrypted_api_key`.
+- Place critical workflow actions behind explicit human approval mechanisms.
 
-3. Experiments
-3.1 HPD-Transformer Evaluation
-3.1.1 Benchmark Results:
+---
 
-MMLU: 82% accuracy (vs. 79% for DeepSeek-V3).
+## 9) Response Contract
 
-CoNLL-2003: 92.3 F1-score for named entity recognition.
+Each query response includes:
 
-Wikitext-103: 18.5 perplexity.
+- Executive Summary
+- Deep Analysis
+- Evidence Used
+- Cybersecurity Implications
+- Risk Level + rationale
+- Recommendations
+- Confidence Score
+- Missing Data
+- Assumptions
+- Active Agents
+- Evidence Availability
 
-3.1.2 Comparison to Baselines:
-
-Outperforms GPT-4 and DeepSeek-V3 in specialized tasks.
-
-3.2 Distilled Model Evaluation
-3.2.1 Performance on Edge Devices:
-
-Runs on Raspberry Pi with <1 GB memory.
-
-3.2.2 Energy Efficiency Metrics:
-
-80% lower CO2 emissions than comparable models.
-
-4. Discussion
-4.1 Hybrid Reasoning vs. Monolithic Models
-Advantages:
-
-Combines deterministic parsing with probabilistic reasoning.
-
-Achieves higher accuracy in niche domains.
-
-Limitations:
-
-Struggles with long-context inputs (>8k tokens).
-
-4.2 Unsuccessful Attempts
-4.2.1 Challenges in Long-Context Parsing:
-
-Performance degrades beyond 8k tokens.
-
-4.2.2 Cold Start for New Domains:
-
-Requires significant fine-tuning for rare domains.
-
-5. Conclusion, Limitations, and Future Work
-Conclusion:
-The HPD-Transformer sets a new standard for hybrid AI models, combining precision, efficiency, and adaptability.
-
-Limitations:
-
-Limited context length.
-
-High compute requirements for training.
-
-Future Work:
-
-Expand context window to 32k tokens.
-
-Add multi-modal support (text + images).
-
-A. Contributions and Acknowledgments
-Contributions:
-
-Dr. RAMI: Lead architect and researcher.
-
-HPD AI Labs: Development and deployment.
-
-Acknowledgments:
-
-Hugging Face for open-source tools.
-
-NVIDIA for GPU support.## Hi there 👋
-
-<!--
-**ramishaheen/ramishaheen** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
